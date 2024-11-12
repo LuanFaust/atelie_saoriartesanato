@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}
+Adicionar novo Cliente
+{% endblock %}
+{% block content %}
+        <form action="{{ url_for('addrec') }}" method="POST">
+            <h3>Por Favor adicione um cliente:</h3>
+            Nome<br>
+            <input type="text" name="nm" /><br>
+
+            Endereço<br>
+            <textarea name="add"></textarea><br>
+
+            Venda<br>
+            <input type="text" name="venda" /><br>
+
+            Data<br>
+            <input type="date" name="data" /><br>
+
+            <input type="submit" value="Enviar" /><br>
+        </form>
+{% endblock %}
