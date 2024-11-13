@@ -26,15 +26,18 @@ def addrec():
     # Data will be available from POST submitted by the form
     if request.method == 'POST':
         try:
-            nm = request.form['nm']
+            nmCria = request.form['nmCri']
+            dtNasc = request.form['dtNasc']
+            nmCli = request.form['nmCli']
             addr = request.form['add']
-            venda = request.form['venda']
-            data = request.form['data']
+            venda = request.form['venda']                     
+            cores = request.form['cores']
+            data = request.form['data'] 
 
             # Connect to SQLite3 database and execute the INSERT
             with sqlite3.connect('database.db') as con:
                 cur = con.cursor()
-                cur.execute("INSERT INTO clientes (name, addr, venda, data) VALUES (?,?,?,?)",(nm, addr, venda, data))
+                cur.execute("INSERT INTO clientes (nameCriança, dataNasc, nameCliente, addr, venda, cores, data) VALUES (?,?,?,?,?,?,?)",(nmCria, dtNasc, nmCli, addr, venda, cores, data))
 
                 con.commit()
                 msg = "Inserido com Sucesso"
@@ -93,21 +96,24 @@ def editrec():
         try:
             # Use the hidden input value of id from the form to get the rowid
             rowid = request.form['rowid']
-            nm = request.form['nm']
+            nmCria = request.form['nmCri']
+            dtNasc = request.form['dtNasc']
+            nmCli = request.form['nmCli']
             addr = request.form['add']
-            venda = request.form['venda']
-            data = request.form['data']
+            venda = request.form['venda']                     
+            cores = request.form['cores']
+            data = request.form['data'] 
 
             # UPDATE a specific record in the database based on the rowid
             with sqlite3.connect('database.db') as con:
                 cur = con.cursor()
-                cur.execute("UPDATE clientes SET name='"+nm+"', addr='"+addr+"', venda='"+venda+"', data='"+data+"' WHERE rowid="+rowid)
+                cur.execute("UPDATE clientes SET nameCriança='"+nmCria+"', dataNasc='"+dtNasc+"', nameCliente='"+nmCli+"', addr='"+addr+"', venda='"+venda+"', cores='"+cores+"', data='"+data+"'  WHERE rowid="+rowid)
 
                 con.commit()
                 msg = "Alterado com sucesso"
         except:
             con.rollback()
-            msg = "Erro ao editar: UPDATE clientes SET name="+nm+", addr="+addr+", venda="+venda+", data="+data+" WHERE rowid="+rowid
+            msg = "Erro ao editar: UPDATE clientes SET nameCriança="+nmCria+", nameCliente="+nmCli+", addr="+addr+", venda="+venda+", data="+data+", dataNasc="+data+", cores="+cores+"  WHERE rowid="+rowid
 
         finally:
             con.close()

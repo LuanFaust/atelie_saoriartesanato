@@ -4,5 +4,17 @@ SAORI ARTESANATO
 {% endblock %}
 {% block content %}
 <h1>SEJA BEM VINDO AO ATÊLIE!</h1>
-<h2>Saori Artesanato</h2>
+<main>
+    <div class="gallery-container">
+        <a href="{{ url_for('static', filename='barbieLaço.png')}}" class="gallery-items">
+            <img src="{{ url_for('static', filename='barbieLaço.png')}}" alt="barbieLaço">
+        </a>
+        <a href="{{ url_for('static', filename='brasilLaço.png')}}" class="gallery-items">
+            <img src="{{ url_for('static', filename='brasilLaço.png')}}" alt="brasilLaço">
+        </a>
+        <a href="{{ url_for('static', filename='sereiaLaço.png')}}" class="gallery-items">
+            <img src="{{ url_for('static', filename='sereiaLaço.png')}}" alt="sereiaLaço">
+        </a>
+    </div>
+</main>
 {% endblock %}

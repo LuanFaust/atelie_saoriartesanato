@@ -17,8 +17,17 @@
             {% block content %}
             {% endblock %}
             <hr/>
-            <footer>
-                <p><img src="{{ url_for('static', filename='logo.png')}}" width="35" height="20">&copy; 2024</p>
+            <footer class="main-footer">
+                <div class="container main-footer-contain">
+                    <h3 class="title-footer">SAORI ARTESANATO</h3>
+                    <UL class="list-container">
+                        <li class="footer-item">
+                            <a href="https://www.instagram.com/saori.artesanato/" target="_blank">
+                                <img src="{{ url_for('static', filename='Instagramlogo.svg')}}" alt="Instagramlogo">
+                            </a>
+                        </li>
+                    </UL>
+                </div>
             </footer>
         </div>
     </body>

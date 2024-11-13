@@ -3,20 +3,68 @@
 Adicionar novo Cliente
 {% endblock %}
 {% block content %}
-        <form action="{{ url_for('addrec') }}" method="POST">
-            <h3>Por Favor adicione um cliente:</h3>
-            Nome<br>
-            <input type="text" name="nm" /><br>
+<form action="{{ url_for('addrec') }}" method="POST">
+    <h3>Por Favor adicione um cliente:</h3>
+    Nome da Criança<br>
+    <input type="text" name="nmCri" /><br>
 
-            Endereço<br>
-            <textarea name="add"></textarea><br>
+    Data de Nascimento da Criança<br>
+    <input type="date" name="dtNasc" /><br>
 
-            Venda<br>
-            <input type="text" name="venda" /><br>
+    Nome do cliente<br>
+    <input type="text" name="nmCli" /><br>
 
-            Data<br>
-            <input type="date" name="data" /><br>
+    Endereço<br>
+    <textarea name="add"></textarea><br>
 
-            <input type="submit" value="Enviar" /><br>
-        </form>
+    Laços vendido<br>
+    <select name="venda" id="venda">
+        <option value="LAÇO AMORA"> Laço Amora</option>
+        <option value="LAÇO FOLHA">Laço Folha</option>
+        <option value="LAÇO MINI">Laço Mini</option>
+        <option value="LAÇO TERERE">Laço Terere</option>
+        <option value="LAÇO RN"> Laço RN</option>
+        <option value="LAÇO GRAVATINHA">Laço Gravatinha</option>
+        <option value="LAÇO BOUTIQUE">Laço Boutique</option>
+        <option value="LAÇO CATAVENTO">Laço Catavento</option>
+        <option value="LAÇO EM PÉ">Laço em Pé</option>
+        <option value="LAÇO KISS">Laço Kiss</option>
+        <option value="LAÇO BORBOLETA">Laço Borboleta</option>
+        <option value="LAÇO FRANZIDO">Laço Franzido</option>
+        <option value="LAÇO MARIA">Laço Maria</option>
+        <option value="LAÇO SIMONE">Laço Simone</option>
+        <option value="LAÇO JUJU">Laço Juju</option>
+        <option value="LAÇO DONNA">Laço Donna</option>
+    </select><br>
+
+    Cores do laço<br>
+    <select name="cores" id="cores">
+        <option value="AZUL CELESTE">Azul Celeste</option>
+        <option value="AZUL BEBÊ">Azul Bebê</option>
+        <option value="AZUL ROYAL">Azul Royal</option>
+        <option value="AMARELO MOSTARDA">Amarelo Mostarda</option>
+        <option value="AMARELO CANARIO">Amarelo Canario</option>
+        <option value="AMARELO OURO">Amarelo Ouro</option>
+        <option value="AMARELO PASTEL">Amarelo Pastel</option>
+        <option value="VERMELHO ESCARLATE">Vermelho Escarlate</option>
+        <option value="VERMELHO RUBI">Vermelho Rubi</option>
+        <option value="BORDO">Bordo</option>
+        <option value="OFF WHITE">Off White</option>
+        <option value="PRETO ONIX">Preto Onix</option>
+        <option value="PRETO CARVÃO">Preto Carvão</option>
+        <option value="LILAS">Lilas</option>
+        <option value="ORQUÍDEA">Orquídea</option>
+        <option value="LILÁS PASTEL">Lilás Pastel</option>
+        <option value="VERDE ESMERALDA">Verde Esmeralda</option>
+        <option value="VERDE OLIVA">Verde Oliva</option>
+        <option value="VERDE MENTA">Verde Menta</option>
+        <option value="VERDE LIMÃO">Verde Limão</option>
+        <option value="VERDE MUSGO">Verde Musgo</option>
+    </select> <br>
+
+    Data da venda<br>
+    <input type="date" name="data" /><br>
+
+    <input type="submit" value="Enviar" /><br>
+</form>
 {% endblock %}
