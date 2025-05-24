@@ -20,8 +20,32 @@ LISTAR TODOS OS CLIENTES
         <td></td>
     </thead>
 
-    {% for row in rows %}
+    {% for row in clientes %}
     <tr>
+        <td>{{ row.rowid }}</td>
+        <td>{{ row.nameCriança }}</td>
+        <td>{{ row.dataNasc }}</td>
+        <td>{{ row.nameCliente }}</td>
+        <td>{{ row.addr }}</td>
+        <td>{{ row.venda }}</td>
+        <td>{{ row.cores }}</td>
+        <td>{{ row.data }}</td>
+        <td>{{ row.inicio }}</td>
+        <td>{{ row.termino }}</td>
+        <td>{{ row.duracao }}</td>
+        <td>
+            <form action="{{url_for('edit')}}" method="POST">
+                <input type="hidden" name="id" value="{{ row.rowid }}">
+                <input type="submit" value="Editar">
+            </form>
+        </td>
+        <td>
+            <form onsubmit="return confirm('Você tem certeza que deseja exluir esse cliente?');"
+                action="{{url_for('delete')}}" method="POST"><input type="hidden" name="id"
+                    value="{{ row.rowid }}"><input type="submit" value="Excluir"></form>
+        </td>
+    </tr>
+    <!-- <tr>
         <td>{{ row["rowid"] }}</td>
         <td>{{ row["nameCriança"] }}</td>
         <td>{{ row["dataNasc"] }}</td>
@@ -32,7 +56,6 @@ LISTAR TODOS OS CLIENTES
         <td>{{ row["data"] }}</td>
         <td>{{ row["inicio"] }}</td>
         <td>{{ row["termino"] }}</td>
-        <td>{{ row["termino"] - row["inicio"] }}</td>
         <td>
             <form action="{{url_for('edit')}}" method="POST">
                 <input type="hidden" name="id" value="{{ row['rowid'] }}">
@@ -44,7 +67,7 @@ LISTAR TODOS OS CLIENTES
                 action="{{url_for('delete')}}" method="POST"><input type="hidden" name="id"
                     value="{{ row['rowid'] }}"><input type="submit" value="Excluir"></form>
         </td>
-    </tr>
+    </tr> -->
     {% endfor %}
 </table>
 {% endblock %}

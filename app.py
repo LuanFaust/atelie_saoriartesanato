@@ -7,6 +7,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 import sqlite3
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
@@ -53,43 +54,67 @@ def addrec():
             return render_template('result.html',msg=msg)
 
 #função para calcular o tempo gasto nas confecções
-# def get_eventos():
-#     conn = sqlite3.connect('database.db')
-#     cursor = conn.cursor()
+def get_clientes():
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
     
-#     cursor.execute("""
-#         SELECT rowid, inicio, termino,
-#                    (julianday(termino) - julianday(inicio)) * 24 * 60 AS duracao_minutos
-#          FROM clientes
-#     """)
-    
-#     eventos = []
-#     for row in cursor.fetchall():
-#        rowid,inicio,termino,duracao_minutos = row
-#     eventos.append({
-#             'rowid': rowid,
-#             'inicio': inicio,
-#             'termino': termino,
-#             'duracao': f"{int(duracao_minutos)} minnutos"})
-#     conn.close()
-#     return eventos
+    cursor.execute("SELECT rowid,nameCriança, dataNasc, nameCliente, addr, venda, cores, data, inicio, termino FROM clientes")
+    registros=cursor.fetchall()
+    dados = []
+    for row in registros:
+        rowid, nameCriança, dataNasc,nameCliente,addr,venda,cores,data,inicio,termino = row
+        try:
+            entrada = datetime.strptime(inicio, "%Y-%m-%d %H:%M:%S")
+            saida = datetime.strptime(termino, "%Y-%m-%d %H:%M:%S")
+            duracao = saida - entrada
+            dias=duracao.days
+            horas=duracao.seconds//3600
+            minutos=(duracao.seconds % 3600) // 60
+            
+        except Exception:
+            duracao = "Formato incorreto"
 
-# Route to SELECT all data from the database and display in a table      
+        try:
+            dados.append({
+                'rowid': rowid,
+                'nameCriança': nameCriança,
+                'dataNasc': dataNasc,
+                'nameCliente': nameCliente,
+                'addr': addr,
+                'venda': venda,
+                'cores': cores,
+                'data': data,
+                'inicio': inicio,
+                'termino': termino,
+                'duracao': "foi'{dias}' dias,{horas} horas e {minutos} minutos"
+            })
+        except Exception:
+            duracao = "erro na conversao"
+
+    conn.close()
+    return dados
+
 @app.route('/list')
 def list():
+    clientes = get_clientes()
+    return render_template('list.html', clientes=clientes)
+
+# Route to SELECT all data from the database and display in a table      
+# @app.route('/list')
+# def list():
     # Connect to the SQLite3 datatabase and 
     # SELECT rowid and all Rows from the clientes table.
-    con = sqlite3.connect("database.db")
-    con.row_factory = sqlite3.Row
+#     con = sqlite3.connect("database.db")
+#     con.row_factory = sqlite3.Row
 
-    cur = con.cursor()
-    cur.execute("SELECT rowid, * FROM clientes")
+#     cur = con.cursor()
+#     cur.execute("SELECT rowid, * FROM clientes")
 
-    rows = cur.fetchall()
-    con.close()
-    # Send the results of the SELECT to the list.html page
-   # eventos = get_eventos()
-    return render_template("list.html",rows=rows)
+#     rows = cur.fetchall()
+#     con.close()
+#     # Send the results of the SELECT to the list.html page
+#    # eventos = get_eventos()
+#     return render_template("list.html",rows=rows)
 
 # Route that will SELECT a specific row in the database then load an Edit form 
 @app.route("/edit", methods=['POST','GET'])
