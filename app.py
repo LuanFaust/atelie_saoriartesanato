@@ -52,6 +52,36 @@ def addrec():
             # Send the transaction message to result.html
             return render_template('result.html',msg=msg)
 
+#função para calcular o tempo gasto nas confecções
+def get_eventos():
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    
+    cursor.execute("""
+        SELECT rowid, inicio, termino,
+                   (julianday(termino) - julianday(inicio)) * 24 * 60 AS duracao_minutos
+         FROM clientes
+    """)
+    
+    eventos = []
+    for row in cursor.fetchall():
+       rowid,inicio,termino,duracao_minutos = row
+    eventos.append({
+            'rowid': rowid,
+            'inicio': inicio,
+            'termino': termino,
+            'duracao': f"{int(duracao_minutos)} minnutos"})
+    conn.close()
+    return eventos
+
+@app.route('/list')
+def list():
+    eventos = get_eventos()
+    return render_template('list.html', eventos=eventos)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
 # Route to SELECT all data from the database and display in a table      
 @app.route('/list')
 def list():
