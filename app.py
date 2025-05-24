@@ -74,14 +74,6 @@ def get_eventos():
     conn.close()
     return eventos
 
-# @app.route('/list')
-# def list():
-#     eventos = get_eventos()
-#     return render_template('list.html', eventos=eventos)
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
-
 # Route to SELECT all data from the database and display in a table      
 @app.route('/list')
 def list():
@@ -96,8 +88,8 @@ def list():
     rows = cur.fetchall()
     con.close()
     # Send the results of the SELECT to the list.html page
-    eventos = get_eventos()
-    return render_template("list.html",rows=rows,eventos=eventos)
+   # eventos = get_eventos()
+    return render_template("list.html",rows=rows)
 
 # Route that will SELECT a specific row in the database then load an Edit form 
 @app.route("/edit", methods=['POST','GET'])

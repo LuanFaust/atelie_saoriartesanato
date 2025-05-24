@@ -31,10 +31,8 @@ LISTAR TODOS OS CLIENTES
         <td>{{ row["cores"] }}</td>
         <td>{{ row["data"] }}</td>
         <td>{{ row["inicio"] }}</td>
-        <td>{{ row["termino"] }}</td>
-        {% for e in eventos %}
-            <td>{{ e.duracao }}</td>
-        {% endfor %}
+        <td>{{ row["termino"] }}</td>       
+        <td>{{ julianday(row["termino"]) - julianday(row["inicio"]) }}</td>
         <td>
             <form action="{{url_for('edit')}}" method="POST">
                 <input type="hidden" name="id" value="{{ row['rowid'] }}">
