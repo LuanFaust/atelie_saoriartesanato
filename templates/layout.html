@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
-    </head>
 
-    <body>
-        <div class="navbar">
-            <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
-            <a href="{{ url_for('enternew') }}" class="navbar-item">Adicionar novos Clientes</a>
-            <a href="{{ url_for('list') }}" class="navbar-item">Lista dos Clientes</a>
-        </div>
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
+</head>
 
-        <div class="body-content">
-            {% block content %}
-            {% endblock %}
-            <hr/>
-            <footer class="main-footer">
-                <div class="container main-footer-contain">
-                    <h3 class="title-footer">SAORI ARTESANATO</h3>
-                    <UL class="list-container">
-                        <li class="footer-item">
-                            <a href="https://www.instagram.com/saori.artesanato/" target="_blank">
-                                <img src="{{ url_for('static', filename='Instagramlogo.svg')}}" alt="Instagramlogo">
-                            </a>
-                        </li>
-                    </UL>
-                </div>
-            </footer>
-        </div>
-    </body>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
+        <a href="{{ url_for('enternew') }}" class="navbar-item">Adicionar novos Clientes</a>
+        <a href="{{ url_for('list') }}" class="navbar-item">Lista dos Clientes</a>
+    </div>
+
+    <div class="body-content">
+        {% block content %}
+        {% endblock %}
+        <hr />
+        <footer class="main-footer">
+            <div class="container main-footer-contain">
+                <h3 class="title-footer">SAORI ARTESANATO</h3>
+                <UL class="list-container">
+                    <li class="footer-item">
+                        <a href="https://www.instagram.com/saori.artesanato/" target="_blank">
+                            <img src="{{ url_for('static', filename='Instagramlogo.svg')}}" alt="Instagramlogo">
+                        </a>
+                    </li>
+                </UL>
+            </div>
+        </footer>
+    </div>
+</body>
+
 </html>

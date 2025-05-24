@@ -3,33 +3,42 @@
 LISTAR TODOS OS CLIENTES
 {% endblock %}
 {% block content %}
-        <table border="1px">
-            <thead>
-                <td><strong>CLIENTE ID</strong></td>
-                <td><strong>NOME DA CRIANÇA</strong></td>
-                <td><strong>NASCIMENTO DA CRIANÇA</strong></td>
-                <td><strong>NOME DO CLIENTE</strong></td>
-                <td><strong>ENDEREÇO</strong></td>
-                <td><strong>LAÇOS</strong></td>
-                <td><strong>CORES</strong></td>
-                <td><strong>DATA DA VENDA</strong></td>
-                <td></td>
-                <td></td>
-            </thead>
+<table border="1px">
+    <thead>
+        <td><strong>CLIENTE ID</strong></td>
+        <td><strong>NOME DA CRIANÇA</strong></td>
+        <td><strong>NASCIMENTO DA CRIANÇA</strong></td>
+        <td><strong>NOME DO CLIENTE</strong></td>
+        <td><strong>ENDEREÇO</strong></td>
+        <td><strong>LAÇOS</strong></td>
+        <td><strong>CORES</strong></td>
+        <td><strong>DATA DA VENDA</strong></td>
+        <td></td>
+        <td></td>
+    </thead>
 
-            {% for row in rows %}
-            <tr>
-                <td>{{ row["rowid"] }}</td>
-                <td>{{ row["nameCriança"] }}</td>
-                <td>{{ row["dataNasc"] }}</td>
-                <td>{{ row["nameCliente"] }}</td>
-                <td>{{ row["addr"] }}</td>
-                <td>{{ row["venda"] }}</td>
-                <td>{{ row["cores"] }}</td>
-                <td>{{ row["data"] }}</td>
-                <td><form action="{{url_for('edit')}}" method="POST"><input type="hidden" name="id" value="{{ row['rowid'] }}"><input type="submit" value="Editar"></form> </td>
-                <td><form onsubmit="return confirm('Você tem certeza que deseja exluir esse cliente?');" action="{{url_for('delete')}}" method="POST"><input type="hidden" name="id" value="{{ row['rowid'] }}"><input type="submit" value="Excluir"></form> </td>
-            </tr>
-            {% endfor %}
-        </table>
+    {% for row in rows %}
+    <tr>
+        <td>{{ row["rowid"] }}</td>
+        <td>{{ row["nameCriança"] }}</td>
+        <td>{{ row["dataNasc"] }}</td>
+        <td>{{ row["nameCliente"] }}</td>
+        <td>{{ row["addr"] }}</td>
+        <td>{{ row["venda"] }}</td>
+        <td>{{ row["cores"] }}</td>
+        <td>{{ row["data"] }}</td>
+        <td>
+            <form action="{{url_for('edit')}}" method="POST">
+                <input type="hidden" name="id" value="{{ row['rowid'] }}">
+                <input type="submit" value="Editar">
+            </form>
+        </td>
+        <td>
+            <form onsubmit="return confirm('Você tem certeza que deseja exluir esse cliente?');"
+                action="{{url_for('delete')}}" method="POST"><input type="hidden" name="id"
+                    value="{{ row['rowid'] }}"><input type="submit" value="Excluir"></form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock %}
