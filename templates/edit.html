@@ -68,6 +68,12 @@ Editar Cliente
     Data<br>
     <input type="date" name="data" value="{{ row['data'] }}" /><br>
 
+    Inicio da Confecção
+     <input id="party-inicio" type="datetime-local" name="party-date-inicio" />
+
+    Término da Confecção
+     <input id="party-termino" type="datetime-local" name="party-date-termino" />
+
     <input type="submit" value="Alterar" /><br>
 </form>
 {% endfor %}

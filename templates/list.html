@@ -13,6 +13,8 @@ LISTAR TODOS OS CLIENTES
         <td><strong>LAÇOS</strong></td>
         <td><strong>CORES</strong></td>
         <td><strong>DATA DA VENDA</strong></td>
+        <td><strong>INICIO DA CONFECÇÃO</strong></td>
+        <td><strong>TÉRMINO DA CONFECÇÃO</strong></td>
         <td></td>
         <td></td>
     </thead>
@@ -27,6 +29,8 @@ LISTAR TODOS OS CLIENTES
         <td>{{ row["venda"] }}</td>
         <td>{{ row["cores"] }}</td>
         <td>{{ row["data"] }}</td>
+        <td>{{ row["inicio"] }}</td>
+        <td>{{ row["termino"] }}</td>
         <td>
             <form action="{{url_for('edit')}}" method="POST">
                 <input type="hidden" name="id" value="{{ row['rowid'] }}">

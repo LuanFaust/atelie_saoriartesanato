@@ -33,11 +33,13 @@ def addrec():
             venda = request.form['venda']                     
             cores = request.form['cores']
             data = request.form['data'] 
+            inicio= request.form['party-date-inicio']
+            termino= request.form['party-date-termino']
 
             # Connect to SQLite3 database and execute the INSERT
             with sqlite3.connect('database.db') as con:
                 cur = con.cursor()
-                cur.execute("INSERT INTO clientes (nameCriança, dataNasc, nameCliente, addr, venda, cores, data) VALUES (?,?,?,?,?,?,?)",(nmCria, dtNasc, nmCli, addr, venda, cores, data))
+                cur.execute("INSERT INTO clientes (nameCriança, dataNasc, nameCliente, addr, venda, cores, data, inicio, termino) VALUES (?,?,?,?,?,?,?,?,?)",(nmCria, dtNasc, nmCli, addr, venda, cores, data, inicio, termino))
 
                 con.commit()
                 msg = "Inserido com Sucesso"
@@ -102,18 +104,20 @@ def editrec():
             addr = request.form['add']
             venda = request.form['venda']                     
             cores = request.form['cores']
-            data = request.form['data'] 
+            data = request.form['data']
+            inicio= request.form['party-date-inicio']
+            termino= request.form['party-date-termino'] 
 
             # UPDATE a specific record in the database based on the rowid
             with sqlite3.connect('database.db') as con:
                 cur = con.cursor()
-                cur.execute("UPDATE clientes SET nameCriança='"+nmCria+"', dataNasc='"+dtNasc+"', nameCliente='"+nmCli+"', addr='"+addr+"', venda='"+venda+"', cores='"+cores+"', data='"+data+"'  WHERE rowid="+rowid)
+                cur.execute("UPDATE clientes SET nameCriança='"+nmCria+"', dataNasc='"+dtNasc+"', nameCliente='"+nmCli+"', addr='"+addr+"', venda='"+venda+"', cores='"+cores+"', data='"+data+"', inicio='"+inicio+"', termino='"+termino+"'  WHERE rowid="+rowid)
 
                 con.commit()
                 msg = "Alterado com sucesso"
         except:
             con.rollback()
-            msg = "Erro ao editar: UPDATE clientes SET nameCriança="+nmCria+", nameCliente="+nmCli+", addr="+addr+", venda="+venda+", data="+data+", dataNasc="+data+", cores="+cores+"  WHERE rowid="+rowid
+            msg = "Erro ao editar: UPDATE clientes SET nameCriança="+nmCria+", nameCliente="+nmCli+", addr="+addr+", venda="+venda+", data="+data+", dataNasc="+data+", cores="+cores+", data="+data+", inicio="+inicio+", termino="+termino+"  WHERE rowid="+rowid
 
         finally:
             con.close()
