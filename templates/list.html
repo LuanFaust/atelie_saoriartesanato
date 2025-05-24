@@ -32,6 +32,7 @@ LISTAR TODOS OS CLIENTES
         <td>{{ row["data"] }}</td>
         <td>{{ row["inicio"] }}</td>
         <td>{{ row["termino"] }}</td>
+        <td>{{ row["termino"] - row["inicio"] }}</td>
         <td>
             <form action="{{url_for('edit')}}" method="POST">
                 <input type="hidden" name="id" value="{{ row['rowid'] }}">
